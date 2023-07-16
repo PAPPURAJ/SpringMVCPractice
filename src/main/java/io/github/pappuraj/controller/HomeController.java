@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import database.MyConsoleApplication;
@@ -20,6 +21,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		ApplicationContext context=new ClassPathXmlApplicationContext("database/config.xml");
+		
+		System.out.println("".charAt(0));
 		
 		RoboticShopDao dao=context.getBean("myd",RoboticShopDao.class);
 		List<RoboticProduct> products;
@@ -49,5 +52,11 @@ public class HomeController {
 		return "about";
 	}	
 	
+	//for exception handling
+//	@ExceptionHandler({NullPointerException.class,StringIndexOutOfBoundsException.class})
+//	public String handle() {
+//		System.out.println("NULL=================");
+//		return "error";
+//	}
 
 }
